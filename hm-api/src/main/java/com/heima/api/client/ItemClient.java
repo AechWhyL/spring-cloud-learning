@@ -1,7 +1,6 @@
-package com.hmall.cart.client;
+package com.heima.api.client;
 
-import com.hmall.cart.domain.dto.ItemDTO;
-import io.github.classgraph.json.Id;
+import com.heima.api.domain.dto.ItemDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: cart-service # 服务名称
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848 # nacos地址
+      config:
+        username: nacos
+        password: 6986035
+        namespace: public
+        file-extension: yaml
+        shared-configs: # 共享配置
+          - dataId: shared-log.yaml # 共享日志配置
+          - dataId: shared-jdbc.yaml # 共享mybatis配置
+          - dataId: shared-swagger.yaml # 共享日志配置
+      discovery:
+        username: nacos
+        password: 6986035

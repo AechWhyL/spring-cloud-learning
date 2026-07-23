@@ -1,4 +1,4 @@
-package com.heima;
+package com.heima.gateway;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;
