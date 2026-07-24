@@ -9,3 +9,4 @@ hm:
     package: com.hmall.cart.controller
   db:
     database: hm-cart
+

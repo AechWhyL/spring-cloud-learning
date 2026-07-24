@@ -8,3 +8,6 @@ spring:
       discovery:
         username: nacos
         password: 6986035
+my-sentinel:
+  port: 8719
+  dashboard-port: 8686

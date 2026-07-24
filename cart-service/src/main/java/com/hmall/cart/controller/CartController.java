@@ -1,5 +1,6 @@
 package com.hmall.cart.controller;
 
+import com.hmall.cart.config.CartProperties;
 import com.hmall.cart.domain.dto.CartFormDTO;
 import com.hmall.cart.domain.po.Cart;
 import com.hmall.cart.domain.vo.CartVO;
@@ -20,11 +21,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CartController {
     private final ICartService cartService;
+    private final CartProperties cartProperties;
 
     @ApiOperation("添加商品到购物车")
     @PostMapping
     public void addItem2Cart(@Valid @RequestBody CartFormDTO cartFormDTO){
         cartService.addItem2Cart(cartFormDTO);
+    }
+
+    @ApiOperation("测试配置热更新")
+    @PostMapping("/hot")
+    public Integer testPropertiesHotUpdate(){
+        return cartProperties.getMaxAmount();
     }
 
     @ApiOperation("更新购物车数据")
