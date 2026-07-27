@@ -1,0 +1,49 @@
+services:
+  seata-server:
+    image: apache/seata-server:2.5.0
+    env_file:
+      - ./env/.env
+    hostname: seata-server
+    ports:
+      - "8091:8091" # server
+      - "7091:7091"
+    environment:
+      - STORE_MODE=db
+      - SEATA_IP=${SEATA_IP:-127.0.0.1}
+      - SEATA_PORT=8091
+    networks:
+      - seata-network
+      - nacos-network
+    volumes:
+      - "./seata-server-2.5.0-resources:/seata-server/resources"
+    depends_on:
+      mysql-for-seata:
+        condition: service_healthy
+
+  mysql-for-seata:
+    image: mysql:9.7.1
+    env_file:
+      - ./env/mysql.env
+    container_name: mysql-for-seata
+    networks:
+      - seata-network
+    ports:
+      - "127.0.0.1:3386:3306"
+    volumes:
+      - mysql-for-seata:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p$${MYSQL_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+networks:
+  nacos-network:
+    external: true
+    name: my-nacos_nacos-network
+  seata-network:
+    driver: bridge
+
+volumes:
+  mysql-for-seata:

@@ -16,6 +16,7 @@ spring:
           - dataId: shared-jdbc.yaml # 共享mybatis配置
           - dataId: shared-swagger.yaml # 共享日志配置
           - dataId: sentinel.yaml # sentinel相关日志
+          - dataId: shared-seata.yaml
       discovery:
         username: nacos
         password: 6986035
