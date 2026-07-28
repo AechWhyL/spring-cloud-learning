@@ -1,6 +1,6 @@
 server:
-  ip: host.docker.internal
-  host: host.docker.internal
+  ip: 127.0.0.1
+  host: 127.0.0.1
   port: 7091
 
 spring:
@@ -26,8 +26,8 @@ console:
 seata:
   server:
     node:
-      host: host.docker.internal
-      ip: host.docker.internal
+      host: 127.0.0.1
+      ip: 127.0.0.1
   config:
     # support: nacos, consul, apollo, zk, etcd3
     type: file
