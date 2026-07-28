@@ -1,0 +1,9 @@
+services:
+  cart-service:
+    image: cart-service:latest
+    container_name: cart-service
+    ports:
+      - 8083:8083
+networks:
+  seata_seata_network:
+    external: true

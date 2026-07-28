@@ -1,27 +1,24 @@
 services:
   seata-server:
-    image: apache/seata-server:2.5.0
+    image: seataio/seata-server:1.5.2
     env_file:
       - ./env/.env
     hostname: seata-server
-    ports:
-      - "8091:8091" # server
-      - "7091:7091"
-    environment:
-      - STORE_MODE=db
-      - SEATA_IP=${SEATA_IP:-127.0.0.1}
-      - SEATA_PORT=8091
     networks:
       - seata-network
       - nacos-network
+    environment:
+      - STORE_MODE=db
+      - SEATA_PORT=8091
+      - SEATA_IP=198.2.161.1
     volumes:
-      - "./seata-server-2.5.0-resources:/seata-server/resources"
+      - "./seata-server-1.5.2-resources/application.yml:/seata-server/resources/application.yml"
     depends_on:
       mysql-for-seata:
         condition: service_healthy
 
   mysql-for-seata:
-    image: mysql:9.7.1
+    image: mysql:5.7.44
     env_file:
       - ./env/mysql.env
     container_name: mysql-for-seata
