@@ -1,9 +1,17 @@
 services:
   cart-service:
-    image: cart-service:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: hmall/cart-service:1.0.0
     container_name: cart-service
     ports:
       - 8083:8083
+    networks:
+      - seata_seata-network
+      - my-nacos_nacos-network
 networks:
-  seata_seata_network:
+  seata_seata-network:
+    external: true
+  my-nacos_nacos-network:
     external: true
